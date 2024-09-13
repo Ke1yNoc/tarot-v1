@@ -12,11 +12,12 @@ export default async function fetcher<JSON = any>(
   const wrappedInit = {
     ...init,
     headers: {
-      Authorization: `test`,
+      Authorization: token,
       ...init?.headers,
     },
   };
 
+  // @ts-ignore
   const res = await fetch(input, wrappedInit);
   const data = await res.text();
   const jsonData = data ? JSON.parse(data) : (ResponseBody as JSON);
